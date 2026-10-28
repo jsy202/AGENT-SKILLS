@@ -6,13 +6,20 @@ $targets = @{
   codex       = "$HOME\.codex\skills"
   antigravity = "$HOME\.gemini\antigravity\skills"  # unverified path, adjust if your install differs
 }
-$src = Join-Path $PSScriptRoot 'skills'
+$dsts = $targets.GetEnumerator() | Where-Object {
+  ($Target -eq $_.Key) -or ($Target -eq 'all' -and (Test-Path (Split-Path $_.Value)))
+} | ForEach-Object Value
 
-foreach ($name in $targets.Keys) {
-  if ($Target -ne 'all' -and $Target -ne $name) { continue }
-  $dst = $targets[$name]
-  if ($Target -eq 'all' -and -not (Test-Path (Split-Path $dst))) { continue }
-  New-Item -ItemType Directory -Force $dst | Out-Null
-  Copy-Item "$src\*" $dst -Recurse -Force
-  "installed -> $dst"
+$tmp = Join-Path $env:TEMP "agent-skills-$PID"
+foreach ($line in Get-Content "$PSScriptRoot\skills.txt") {
+  if ($line -match '^\s*(#|$)') { continue }
+  $repo, $path = $line -split '\s+'
+  $dir = Join-Path $tmp ($repo -replace '/', '__')
+  if (-not (Test-Path $dir)) { git clone -q --depth 1 "https://github.com/$repo" $dir }
+  foreach ($d in $dsts) {
+    New-Item -ItemType Directory -Force $d | Out-Null
+    Copy-Item (Join-Path $dir $path) $d -Recurse -Force
+    "$(Split-Path $path -Leaf) -> $d"
+  }
 }
+Remove-Item $tmp -Recurse -Force -ErrorAction SilentlyContinue

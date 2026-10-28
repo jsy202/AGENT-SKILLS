@@ -1,6 +1,7 @@
 # agent-skills
 
-Skill repo shared by Claude Code, Codex and Antigravity. Each skill is `skills/<name>/SKILL.md`.
+Registry of skill GitHub repos for Claude Code, Codex and Antigravity. No skill code lives here;
+`skills.txt` lists where each one comes from and the installer fetches them.
 
 ## Install
 
@@ -8,12 +9,17 @@ Skill repo shared by Claude Code, Codex and Antigravity. Each skill is `skills/<
     ./install.sh            # or: .\install.ps1   (Windows)
     ./install.sh claude     # one target: claude | codex | antigravity
 
-Copies every skill into `~/.claude/skills`, `~/.codex/skills`, `~/.gemini/antigravity/skills`
-(`all` only touches agents whose home dir already exists).
+Shallow-clones each repo in `skills.txt` and copies the skill folder into `~/.claude/skills`,
+`~/.codex/skills`, `~/.gemini/antigravity/skills` (`all` only touches agents whose home dir exists).
+Existing skills of the same name are overwritten. Skills always track the upstream default branch.
 
 ## Skills
 
-- `ppt-master` - editable PPTX deck generation
-- `reverse-engineer-anything` - reverse engineering with the `rea` MCP server
+| Skill | Source |
+|---|---|
+| ppt-master | https://github.com/hugohe3/ppt-master |
+| reverse-engineer-anything (needs the `rea` MCP server) | https://github.com/morluto/rea |
+| ponytail, ponytail-audit/-debt/-gain/-help/-review | https://github.com/DietrichGebert/ponytail |
+| ui-ux-pro-max, design, design-system, brand, slides, ui-styling, banner-design | https://github.com/nextlevelbuilder/ui-ux-pro-max-skill |
 
-Not included: plugin-managed skills (`ui-ux-pro-max`, `ponytail`) - install them from their own marketplaces.
+Add a skill: append a `repo path` line to `skills.txt`.
