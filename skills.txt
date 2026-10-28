@@ -1,16 +1,6 @@
-# <github repo> <path to skill dir inside repo>  (skill name = last path segment)
+# <github repo> <path inside repo>
+# path = one skill dir (has SKILL.md) or a parent dir: every subdir with a SKILL.md is installed
 hugohe3/ppt-master skills/ppt-master
 morluto/rea .agents/skills/reverse-engineer-anything
-DietrichGebert/ponytail skills/ponytail
-DietrichGebert/ponytail skills/ponytail-audit
-DietrichGebert/ponytail skills/ponytail-debt
-DietrichGebert/ponytail skills/ponytail-gain
-DietrichGebert/ponytail skills/ponytail-help
-DietrichGebert/ponytail skills/ponytail-review
-nextlevelbuilder/ui-ux-pro-max-skill .claude/skills/banner-design
-nextlevelbuilder/ui-ux-pro-max-skill .claude/skills/brand
-nextlevelbuilder/ui-ux-pro-max-skill .claude/skills/design
-nextlevelbuilder/ui-ux-pro-max-skill .claude/skills/design-system
-nextlevelbuilder/ui-ux-pro-max-skill .claude/skills/slides
-nextlevelbuilder/ui-ux-pro-max-skill .claude/skills/ui-styling
-nextlevelbuilder/ui-ux-pro-max-skill .claude/skills/ui-ux-pro-max
+DietrichGebert/ponytail skills
+nextlevelbuilder/ui-ux-pro-max-skill .claude/skills

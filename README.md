@@ -22,4 +22,5 @@ Existing skills of the same name are overwritten. Skills always track the upstre
 | ponytail, ponytail-audit/-debt/-gain/-help/-review | https://github.com/DietrichGebert/ponytail |
 | ui-ux-pro-max, design, design-system, brand, slides, ui-styling, banner-design | https://github.com/nextlevelbuilder/ui-ux-pro-max-skill |
 
-Add a skill: append a `repo path` line to `skills.txt`.
+Add a skill: append a `repo path` line to `skills.txt` (path may be a parent dir holding many skills).
+

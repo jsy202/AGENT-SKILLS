@@ -17,6 +17,10 @@ grep -v '^[[:space:]]*\(#\|$\)' "$here/skills.txt" | while read -r repo path; do
   dir="$tmp/$(echo "$repo" | tr / _)"
   [ -d "$dir" ] || git clone -q --depth 1 "https://github.com/$repo" "$dir"
   for d in $dsts; do
-    mkdir -p "$d" && cp -R "$dir/$path" "$d/" && echo "$(basename "$path") -> $d"
+    mkdir -p "$d"
+    for s in "$dir/$path" "$dir/$path"/*/; do
+      [ -f "$s/SKILL.md" ] && cp -R "$s" "$d/" && echo "$(basename "$s") -> $d"
+    done
   done
 done
+
