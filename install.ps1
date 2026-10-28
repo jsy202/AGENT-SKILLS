@@ -15,6 +15,7 @@ foreach ($line in Get-Content "$PSScriptRoot\skills.txt") {
   if ($line -match '^\s*(#|$)') { continue }
   $repo, $path = $line -split '\s+'
   $dir = Join-Path $tmp ($repo -replace '/', '__')
+  if ($path -eq '.') { $dir = Join-Path $tmp ($repo.Split('/')[-1]) }
   if (-not (Test-Path $dir)) { git clone -q --depth 1 "https://github.com/$repo" $dir }
   $p = Join-Path $dir $path
   $skills = if (Test-Path "$p\SKILL.md") { Get-Item $p }

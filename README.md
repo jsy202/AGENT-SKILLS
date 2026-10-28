@@ -23,8 +23,12 @@ Existing skills of the same name are overwritten. Skills always track the upstre
 | ui-ux-pro-max, design, design-system, brand, slides, ui-styling, banner-design | https://github.com/nextlevelbuilder/ui-ux-pro-max-skill |
 | superpowers (planning, debugging, TDD, code review and collaboration workflows) | https://github.com/obra/superpowers |
 | graphify (also needs the `graphifyy` Python CLI) | https://github.com/Graphify-Labs/graphify |
+| context7-cli (current library documentation; also needs the `ctx7` CLI) | https://github.com/upstash/context7 |
+| humanizer (rewrite AI-sounding prose) | https://github.com/blader/humanizer |
+| planning-with-files (persistent task plans, findings and progress) | https://github.com/OthmanAdi/planning-with-files |
 
 For Graphify, install its CLI separately with `uv tool install graphifyy` (or `pipx install graphifyy`).
+For Context7, install its CLI separately with `npm install -g ctx7` (requires Node.js 22.13+).
 The shell installer also accepts upstream `skill.md` files and creates `SKILL.md` for agent discovery.
 
 Add a skill: append a `repo path` line to `skills.txt` (path may be a parent dir holding many skills).

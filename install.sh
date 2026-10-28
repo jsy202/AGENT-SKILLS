@@ -15,10 +15,13 @@ done
 
 grep -v '^[[:space:]]*\(#\|$\)' "$here/skills.txt" | while read -r repo path; do
   dir="$tmp/$(echo "$repo" | tr / _)"
+  [ "$path" != . ] || dir="$tmp/${repo##*/}"
   [ -d "$dir" ] || git clone -q --depth 1 "https://github.com/$repo" "$dir"
+  skill_path="$dir/$path"
+  [ "$path" != . ] || skill_path="$dir"
   for d in $dsts; do
     mkdir -p "$d"
-    for s in "$dir/$path" "$dir/$path"/*/; do
+    for s in "$skill_path" "$skill_path"/*/; do
       if [ -f "$s/SKILL.md" ] || [ -f "$s/skill.md" ]; then
         cp -R "$s" "$d/" || exit 1
         installed="$d/$(basename "$s")"

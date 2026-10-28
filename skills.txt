@@ -6,3 +6,6 @@ DietrichGebert/ponytail skills
 nextlevelbuilder/ui-ux-pro-max-skill .claude/skills
 obra/superpowers skills
 Graphify-Labs/graphify graphify
+upstash/context7 skills/context7-cli
+blader/humanizer .
+OthmanAdi/planning-with-files skills/planning-with-files
