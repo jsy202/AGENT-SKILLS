@@ -4,3 +4,5 @@ hugohe3/ppt-master skills/ppt-master
 morluto/rea .agents/skills/reverse-engineer-anything
 DietrichGebert/ponytail skills
 nextlevelbuilder/ui-ux-pro-max-skill .claude/skills
+obra/superpowers skills
+Graphify-Labs/graphify graphify

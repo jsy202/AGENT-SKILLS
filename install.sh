@@ -19,7 +19,12 @@ grep -v '^[[:space:]]*\(#\|$\)' "$here/skills.txt" | while read -r repo path; do
   for d in $dsts; do
     mkdir -p "$d"
     for s in "$dir/$path" "$dir/$path"/*/; do
-      [ -f "$s/SKILL.md" ] && cp -R "$s" "$d/" && echo "$(basename "$s") -> $d"
+      if [ -f "$s/SKILL.md" ] || [ -f "$s/skill.md" ]; then
+        cp -R "$s" "$d/" || exit 1
+        installed="$d/$(basename "$s")"
+        [ -f "$installed/SKILL.md" ] || cp "$s/skill.md" "$installed/SKILL.md" || exit 1
+        echo "$(basename "$s") -> $d"
+      fi
     done
   done
 done
