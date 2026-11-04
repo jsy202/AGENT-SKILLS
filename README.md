@@ -28,6 +28,7 @@ Existing skills of the same name are overwritten. Skills always track the upstre
 | planning-with-files (persistent task plans, findings and progress) | https://github.com/OthmanAdi/planning-with-files |
 | visual-explainer (HTML diagrams, reviews and slide decks) | https://github.com/nicobailon/visual-explainer |
 | Understand Anything (9 skills for codebase knowledge graphs and dashboards; needs the upstream runtime) | https://github.com/Egonex-AI/Understand-Anything |
+| mattpocock skills (engineering and productivity: tdd, grill-me, diagnosing-bugs, handoff and more) | https://github.com/mattpocock/skills |
 
 For Graphify, install its CLI separately with `uv tool install graphifyy` (or `pipx install graphifyy`).
 For Context7, install its CLI separately with `npm install -g ctx7` (requires Node.js 22.13+).

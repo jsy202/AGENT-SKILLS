@@ -11,3 +11,5 @@ blader/humanizer .
 OthmanAdi/planning-with-files skills/planning-with-files
 nicobailon/visual-explainer plugins/visual-explainer
 Egonex-AI/Understand-Anything understand-anything-plugin/skills
+mattpocock/skills skills/engineering
+mattpocock/skills skills/productivity
