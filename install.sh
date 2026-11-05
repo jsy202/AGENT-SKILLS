@@ -9,17 +9,19 @@ for pair in "claude:$HOME/.claude/skills" "codex:$HOME/.codex/skills" \
             "antigravity:$HOME/.gemini/antigravity/skills"; do  # antigravity path unverified
   name="${pair%%:*}"; dst="${pair#*:}"
   if [ "$target" = "$name" ] || { [ "$target" = all ] && [ -d "$(dirname "$dst")" ]; }; then
-    dsts="$dsts $dst"
+    dsts="$dsts $name:$dst"
   fi
 done
 
-grep -v '^[[:space:]]*\(#\|$\)' "$here/skills.txt" | while read -r repo path; do
+grep -v '^[[:space:]]*\(#\|$\)' "$here/skills.txt" | while read -r repo path skip; do
   dir="$tmp/$(echo "$repo" | tr / _)"
   [ "$path" != . ] || dir="$tmp/${repo##*/}"
   [ -d "$dir" ] || git clone -q --depth 1 "https://github.com/$repo" "$dir"
   skill_path="$dir/$path"
   [ "$path" != . ] || skill_path="$dir"
-  for d in $dsts; do
+  for pair in $dsts; do
+    d="${pair#*:}"
+    case ",${skip#skip:}," in *",${pair%%:*},"*) continue ;; esac
     mkdir -p "$d"
     for s in "$skill_path" "$skill_path"/*/; do
       if [ -f "$s/SKILL.md" ] || [ -f "$s/skill.md" ]; then

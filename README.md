@@ -21,7 +21,7 @@ Existing skills of the same name are overwritten. Skills always track the upstre
 | reverse-engineer-anything (needs the `rea` MCP server) | https://github.com/morluto/rea |
 | ponytail, ponytail-audit/-debt/-gain/-help/-review | https://github.com/DietrichGebert/ponytail |
 | ui-ux-pro-max, design, design-system, brand, slides, ui-styling, banner-design | https://github.com/nextlevelbuilder/ui-ux-pro-max-skill |
-| superpowers (planning, debugging, TDD, code review and collaboration workflows) | https://github.com/obra/superpowers |
+| superpowers (planning, debugging, TDD, code review and collaboration workflows; not installed for Claude, which uses the `superpowers` plugin) | https://github.com/obra/superpowers |
 | graphify (also needs the `graphifyy` Python CLI) | https://github.com/Graphify-Labs/graphify |
 | context7-cli (current library documentation; also needs the `ctx7` CLI) | https://github.com/upstash/context7 |
 | humanizer (rewrite AI-sounding prose) | https://github.com/blader/humanizer |
@@ -54,4 +54,6 @@ Node.js 22+ and pnpm 10+ to build the analysis engine on first use. Restart Code
 installation; invoke `$visual-explainer`, `$understand --language ko`, or `$understand-dashboard`.
 
 Add a skill: append a `repo path` line to `skills.txt` (path may be a parent dir holding many skills).
+Add `skip:claude` (comma-separated targets) as a third column to leave a skill out for those agents,
+e.g. when a plugin already provides it.
 

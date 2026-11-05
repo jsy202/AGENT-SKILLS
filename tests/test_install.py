@@ -34,3 +34,28 @@ class InstallTest(unittest.TestCase):
                 self.assertTrue((destination / skill / "SKILL.md").is_file(), skill)
             self.assertFalse((destination / "SKILL.md").exists())
             self.assertEqual((destination / "lowercase/reference.txt").read_text(), "reference")
+
+    def test_skip_target_column(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            fixtures = root / "fixtures"
+            for path in ("kept/SKILL.md", "plugin/SKILL.md"):
+                file = fixtures / path
+                file.parent.mkdir(parents=True, exist_ok=True)
+                file.write_text(path)
+            (root / "skills.txt").write_text("test/fixtures kept\ntest/fixtures plugin skip:claude\n")
+            source = (Path(__file__).resolve().parents[1] / "install.sh").read_text()
+            (root / "install.sh").write_text(source.replace("$HOME/", str(root / "home") + "/"))
+            binary = root / "bin"
+            binary.mkdir()
+            git = binary / "git"
+            git.write_text('#!/bin/sh\nfor last; do :; done\ncp -R "$REGISTRY_TEST_FIXTURES/." "$last"\n')
+            git.chmod(0o755)
+            environment = dict(os.environ, PATH=str(binary) + os.pathsep + os.environ["PATH"],
+                               REGISTRY_TEST_FIXTURES=str(fixtures))
+            for target in ("claude", "codex"):
+                subprocess.run(["sh", str(root / "install.sh"), target], env=environment, check=True)
+            home = root / "home"
+            self.assertTrue((home / ".claude/skills/kept/SKILL.md").is_file())
+            self.assertFalse((home / ".claude/skills/plugin").exists())
+            self.assertTrue((home / ".codex/skills/plugin/SKILL.md").is_file())

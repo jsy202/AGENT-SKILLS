@@ -1,10 +1,11 @@
 # <github repo> <path inside repo>
 # path = one skill dir (has SKILL.md) or a parent dir: every subdir with a SKILL.md is installed
+# optional 3rd column skip:<target>[,<target>] = do not install for those targets (e.g. a plugin already provides it)
 hugohe3/ppt-master skills/ppt-master
 morluto/rea .agents/skills/reverse-engineer-anything
 DietrichGebert/ponytail skills
 nextlevelbuilder/ui-ux-pro-max-skill .claude/skills
-obra/superpowers skills
+obra/superpowers skills skip:claude
 Graphify-Labs/graphify graphify
 upstash/context7 skills/context7-cli
 blader/humanizer .
